@@ -18,6 +18,3 @@ node_modules/
 
 # spesific file
 kaggle.js
-
-# JSON
-*.json
