@@ -16,7 +16,7 @@
 
 2. *INSTALL PTYHON LIBRARIES*
 	Enter below code into terminal for installing the required libraries
-	"pip install numpy seaborn joblib scikit-learn matplotlib pandas numpy"
+	"pip install numpy seaborn joblib scikit-learn matplotlib pandas numpy flask"
 
 ===========================
 
