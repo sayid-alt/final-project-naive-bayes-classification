@@ -11,8 +11,6 @@
 <body>
 
 	<!-- Navbar -->
-
-
 	<nav class="bg-white text-black border-gray-200 dark:bg-gray-900">
 		<div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
 
@@ -89,7 +87,7 @@
 
 	<!-- Banner -->
 	<section
-		class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+		class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
 		<div class="px-4 mx-auto max-w-screen-xl py-56 ">
 			<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
 				We Predict Weather You're Going To Purchase The Ads Or Nope</h1>
@@ -117,7 +115,7 @@
 	<!-- Form -->
 
 
-	<form class="px-5 max-w-xl mx-auto my-10" id="prediction-form">
+	<form method="post" action="/predict" class="px-5 max-w-xl mx-auto my-10" id="prediction-form">
 		<div class="py-5 border-b">
 			<h1 class="text-4xl font-bold">Predict Here! </h1>
 		</div>
@@ -133,7 +131,8 @@
 							d="M1 1h16" />
 					</svg>
 				</button>
-				<input type="text" id="bedrooms-input" data-input-counter aria-describedby="helper-text-explanation"
+				<input name="age" type="text" id="bedrooms-input" data-input-counter
+					aria-describedby="helper-text-explanation"
 					class="bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					placeholder="" value="21" required>
 				<div
@@ -163,7 +162,7 @@
 				<!-- RP CURRENCY -->
 				<div class="flex">
 					<div class="relative w-full">
-						<input type="number" id="crypto-input"
+						<input name="salary" type="number" id="crypto-input"
 							class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
 							placeholder="1,000,000 IDN" required>
 					</div>
@@ -203,80 +202,22 @@
 					</div>
 
 				</div>
-				<div type="button"
-					class="p-3 text-sm text-gray-500 font-bold focus:outline-none bg-gray-100 rounded-lg  focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-					=
-					<span class="sr-only">Convert currency</span>
-				</div>
-				<!-- USD CURRENCY -->
-				<div class="flex">
-
-					<div class="relative w-full">
-						<input type="number" id="fiat-currency-input"
-							class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-							placeholder="421 USD" required>
-					</div>
-
-
-					<div class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-e-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-						type="button">
-						<svg fill="none" aria-hidden="true" class="h-4 w-4 me-2" viewBox="0 0 20 15">
-							<rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
-							<mask id="a" style="mask-type:luminance" width="20" height="15" x="0" y="0"
-								maskUnits="userSpaceOnUse">
-								<rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
-							</mask>
-							<g mask="url(#a)">
-								<path fill="#D02F44" fill-rule="evenodd"
-									d="M19.6.5H0v.933h19.6V.5zm0 1.867H0V3.3h19.6v-.933zM0 4.233h19.6v.934H0v-.934zM19.6 6.1H0v.933h19.6V6.1zM0 7.967h19.6V8.9H0v-.933zm19.6 1.866H0v.934h19.6v-.934zM0 11.7h19.6v.933H0V11.7zm19.6 1.867H0v.933h19.6v-.933z"
-									clip-rule="evenodd" />
-								<path fill="#46467F" d="M0 .5h8.4v6.533H0z" />
-								<g filter="url(#filter0_d_343_121520)">
-									<path fill="url(#paint0_linear_343_121520)" fill-rule="evenodd"
-										d="M1.867 1.9a.467.467 0 11-.934 0 .467.467 0 01.934 0zm1.866 0a.467.467 0 11-.933 0 .467.467 0 01.933 0zm1.4.467a.467.467 0 100-.934.467.467 0 000 .934zM7.467 1.9a.467.467 0 11-.934 0 .467.467 0 01.934 0zM2.333 3.3a.467.467 0 100-.933.467.467 0 000 .933zm2.334-.467a.467.467 0 11-.934 0 .467.467 0 01.934 0zm1.4.467a.467.467 0 100-.933.467.467 0 000 .933zm1.4.467a.467.467 0 11-.934 0 .467.467 0 01.934 0zm-2.334.466a.467.467 0 100-.933.467.467 0 000 .933zm-1.4-.466a.467.467 0 11-.933 0 .467.467 0 01.933 0zM1.4 4.233a.467.467 0 100-.933.467.467 0 000 .933zm1.4.467a.467.467 0 11-.933 0 .467.467 0 01.933 0zm1.4.467a.467.467 0 100-.934.467.467 0 000 .934zM6.533 4.7a.467.467 0 11-.933 0 .467.467 0 01.933 0zM7 6.1a.467.467 0 100-.933.467.467 0 000 .933zm-1.4-.467a.467.467 0 11-.933 0 .467.467 0 01.933 0zM3.267 6.1a.467.467 0 100-.933.467.467 0 000 .933zm-1.4-.467a.467.467 0 11-.934 0 .467.467 0 01.934 0z"
-										clip-rule="evenodd" />
-								</g>
-							</g>
-							<defs>
-								<linearGradient id="paint0_linear_343_121520" x1=".933" x2=".933" y1="1.433" y2="6.1"
-									gradientUnits="userSpaceOnUse">
-									<stop stop-color="#fff" />
-									<stop offset="1" stop-color="#F0F0F0" />
-								</linearGradient>
-								<filter id="filter0_d_343_121520" width="6.533" height="5.667" x=".933" y="1.433"
-									color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-									<feFlood flood-opacity="0" result="BackgroundImageFix" />
-									<feColorMatrix in="SourceAlpha" result="hardAlpha"
-										values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-									<feOffset dy="1" />
-									<feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
-									<feBlend in2="BackgroundImageFix" result="effect1_dropShadow_343_121520" />
-									<feBlend in="SourceGraphic" in2="effect1_dropShadow_343_121520" result="shape" />
-								</filter>
-							</defs>
-						</svg>
-
-						USD <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-							fill="none" viewBox="0 0 10 6">
-
-						</svg>
-					</div>
-				</div>
-
 
 			</div>
 
-			<div class="flex justify-between items-center flex-col sm:flex-row space-y-2 sm:space-y-0">
-				<p class="text-sm text-gray-500 dark:text-gray-400">Last update: 20:45 AM, November 20, 2023</p>
 
-			</div>
+		</div>
+
+		<div class="flex justify-between items-center flex-col sm:flex-row space-y-2 sm:space-y-0">
+			<p class="text-sm text-gray-500 dark:text-gray-400">Last update: 20:45 AM, November 20, 2023</p>
+
+		</div>
 		</div>
 
 
 		<button type="submit"
 			class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 	</form>
-
 
 
 

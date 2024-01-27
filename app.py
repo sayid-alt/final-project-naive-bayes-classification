@@ -1,9 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
 import joblib
+import numpy as np
+from sklearn.preprocessing import RobustScaler
 
 app = Flask(__name__)
 
 gnb_model = joblib.load(open('gnb_model.pkl', 'rb'))
+sc = joblib.load(open('robust_scaler.pkl', 'rb'))
 
 
 @app.route('/')
@@ -11,19 +14,25 @@ def main():
     return render_template('index.html')
 
 
-@app.route('/predict', methods=['POST', 'GET'])
+@app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    int_features = [int(x) for x in request.form.values()]
-    final = [np.array(int_features)]
-    print(int_features)
-    print(final)
-    prediction = model.predict_proba(final)
-    output = '{0:.{1}f}'.format(prediction[0][1], 2)
+    age = int(request.form.get('age'))
+    salary_idn = int(request.form.get('salary'))
+    salary_usd = int(salary_idn / 15776)
 
-    if output > str(0.5):
-        return render_template('forest_fire.html', pred='Your Forest is in Danger.\nProbability of fire occuring is {}'.format(output), bhai="kuch karna hain iska ab?")
+    # 2 dimensional array of features
+    features_2d = np.array([[age, salary_usd]])
+
+    # features scaled
+    final = sc.transform(features_2d)
+
+    # predict
+    prediction = gnb_model.predict(final)
+
+    if prediction == 1:
+        return render_template('predict.html', pred='The guy is going to purchase the insurrance', status='Positive')
     else:
-        return render_template('forest_fire.html', pred='Your Forest is safe.\n Probability of fire occuring is {}'.format(output), bhai="Your Forest is Safe for now")
+        return render_template('predict.html', pred='The guy ain\'t going to purchase the insurrance', status='Negative')
 
 
 if __name__ == '__main__':

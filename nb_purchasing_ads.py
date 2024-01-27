@@ -82,3 +82,6 @@ y_pred_proba
 
 joblib.dump(gnb, 'gnb_model.pkl')
 gnb_model = joblib.load('gnb_model.pkl')
+
+joblib.dump(sc, 'robust_scaler.pkl')
+sc = joblib.load('robust_scaler.pkl')
